@@ -1,0 +1,21 @@
+<div class="fixed inset-0 flex items-center justify-center transition-opacity duration-300 ease-in-out"
+     [ngClass]="{ 'opacity-100 pointer-events-auto': isOpen, 'opacity-0 pointer-events-none': !isOpen }">
+
+  <!-- Fondo con efecto Glassmorphism -->
+  <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-lg transition-opacity duration-300 ease-in-out"></div>
+
+  <!-- Contenedor del Modal -->
+  <div class="bg-white bg-opacity-20 backdrop-blur-lg border border-gray-200 rounded-lg p-8 shadow-xl max-w-md w-full z-10
+              transition-transform duration-300 ease-in-out transform"
+       [ngClass]="{ 'scale-100 translate-y-0': isOpen, 'scale-95 translate-y-8 opacity-0': !isOpen }">
+
+    <button (click)="cerrarModal()" class="absolute top-4 right-4 text-white hover:text-gray-300">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <h2 class="text-2xl font-semibold text-white mb-4">Título del Modal</h2>
+    <p class="text-white text-opacity-80">Este es el contenido del modal con efecto de Glassmorphism. Puedes poner aquí cualquier información.</p>
+  </div>
+</div>

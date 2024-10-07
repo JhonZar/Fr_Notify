@@ -1,0 +1,119 @@
+<div class="settings-container p-6 bg-gray-100 min-h-screen">
+  <div class="bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+    <h2 class="text-2xl font-semibold text-center mb-4">Configuración General</h2>
+
+    <!-- Acordeón -->
+    <app-acordion [items]="accordionItems"></app-acordion>
+
+    <!-- Plantillas para el contenido del acordeón -->
+    <ng-template #timeTemplate>
+      <div class="mb-4">
+        <label for="time" class="block text-sm font-medium text-gray-800 mb-1">Hora de envío:</label>
+        <input type="time" id="time"
+          class="block w-full p-3 border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out bg-gray-50" />
+      </div>
+    </ng-template>
+
+    <ng-template #laborales>
+      <p class="mb-4">Configura días Laborales.</p>
+      <div class="flex space-x-2">
+        <button *ngFor="let day of days"
+          [ngClass]="{'bg-blue-500 text-white': selectedDays.includes(day), 'bg-gray-200 text-gray-800': !selectedDays.includes(day)}"
+          (click)="toggleDay(day)" class="px-4 py-2 rounded-lg transition duration-200 ease-in-out">
+          {{ day }}
+        </button>
+      </div>
+    </ng-template>
+
+
+    <ng-template #feriadosNacionales>
+      <div class="flex flex-col">
+        <h4 class="text-lg font-semibold mb-2">Feriados Nacionales</h4>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div
+            class="border p-4 rounded-md bg-gray-100 shadow-sm transition-colors duration-300 ease-in-out hover:bg-red-100 hover:text-red-800 relative"
+            *ngFor="let holiday of holidays">
+            <span class="font-semibold">{{ holiday.date }}</span><br />
+            <span class="text-sm text-gray-600">{{ holiday.description }}</span><br />
+            <span class="text-sm text-gray-500">Depto: {{ holiday.department }}</span>
+
+            <button (click)="removeHoliday(holiday)" class="absolute top-2 right-2 text-red-500 hover:text-red-700"
+              title="Eliminar feriado">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </div>
+
+        <button (click)="showDateInput = !showDateInput"
+          class="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+          {{ showDateInput ? 'Cancelar' : 'Agregar Feriado Nacional' }}
+        </button>
+
+        <div *ngIf="showDateInput" class="mt-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label for="holiday-date" class="block text-sm font-medium text-gray-700">Fecha:</label>
+              <input type="date" id="holiday-date" [(ngModel)]="newHolidayDate"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+            <div>
+              <label for="holiday-description" class="block text-sm font-medium text-gray-700">Descripción:</label>
+              <input type="text" id="holiday-description" [(ngModel)]="newHolidayDescription"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Descripción del feriado" />
+            </div>
+            <div>
+              <label for="holiday-department" class="block text-sm font-medium text-gray-700">Departamento:</label>
+              <select id="holiday-department" [(ngModel)]="newHolidayDepartment"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                <option *ngFor="let department of departments" [value]="department">{{ department }}</option>
+              </select>
+            </div>
+          </div>
+
+          <button (click)="addHoliday()"
+            class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200">
+            Agregar Feriado
+          </button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #feriadosDepartamentales>
+      <div class="flex flex-col">
+        <h4 class="text-lg font-semibold mb-2">Feriados Departamentales</h4>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div
+            class="border p-4 rounded-md bg-gray-100 shadow-sm transition-colors duration-300 ease-in-out hover:bg-red-100 hover:text-red-800 relative"
+            *ngFor="let holiday of departmentHolidays">
+            <span class="font-semibold">{{ holiday.date }}</span><br />
+            <span class="text-sm text-gray-600">{{ holiday.description }}</span>
+
+            <button (click)="removeDepartmentHoliday(holiday)"
+              class="absolute top-2 right-2 text-red-500 hover:text-red-700" title="Eliminar feriado">
+              <span class="material-icons">delete</span>
+            </button>
+          </div>
+        </div>
+
+        <button (click)="showDateInput = !showDateInput"
+          class="mt-2 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+          {{ showDateInput ? 'Cancelar' : 'Agregar Feriado Nacional' }}
+        </button>
+
+        <div *ngIf="showDateInput" class="mt-4">
+
+          <input type="date" [(ngModel)]="newHolidayDate" class="mt-2 block w-full p-2 border rounded-md shadow-sm"
+            placeholder="Fecha del Feriado" />
+          <input type="text" [(ngModel)]="newHolidayDescription"
+            class="mt-2 block w-full p-2 border rounded-md shadow-sm" placeholder="Descripción del Feriado" />
+          <button (click)="addDepartmentHoliday()"
+            class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200">
+            Agregar Feriado
+          </button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

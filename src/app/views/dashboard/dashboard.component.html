@@ -1,0 +1,48 @@
+<div class="dashboard-container p-4 bg-gray-100 min-h-screen">
+  <h1 class="text-2xl font-bold mb-6">Dashboard</h1>
+
+  <div class="content bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-xl font-semibold mb-4">Resumen General</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+      <app-card title="Ventas" value="200" color="green"></app-card>
+      <app-card title="Usuarios" value="1500" color="blue"></app-card>
+      <app-card title="Errores" value="5" color="red"></app-card>
+    </div>
+
+    <!-- Aquí puedes incluir un gráfico si lo deseas -->
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold mb-2">Gráfico de Actividad</h3>
+      <app-chart></app-chart>
+    </div>
+
+    <h2 class="text-xl font-semibold mb-4">Filtrar Datos</h2>
+    <div class="flex space-x-4 mb-4">
+      <div class="flex-1">
+        <label for="start-date" class="block text-sm font-medium text-gray-700">Fecha de Inicio:</label>
+        <input type="date" id="start-date"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+      </div>
+      <div class="flex-1">
+        <label for="end-date" class="block text-sm font-medium text-gray-700">Fecha de Fin:</label>
+        <input type="date" id="end-date"
+          class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+      </div>
+      <div class="flex items-end">
+        <button class="mt-6 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200">
+          Filtrar
+        </button>
+      </div>
+    </div>
+
+    <h2 class="text-xl font-semibold mb-4">Tabla de Datos</h2>
+
+    <!-- Campo de búsqueda -->
+    <div class="mb-4">
+      <label for="search" class="block text-sm font-medium text-gray-700">Buscar:</label>
+      <input type="text" id="search" placeholder="Buscar..."
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+    </div>
+
+    <app-table></app-table>
+  </div>
+</div>

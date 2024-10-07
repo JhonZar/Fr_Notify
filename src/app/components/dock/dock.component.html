@@ -1,0 +1,10 @@
+<div class="dock">
+  <ul class="flex space-x-4">
+    <li *ngFor="let item of items" class="dock-item">
+      <button class="flex flex-col items-center" (click)="navigateTo(item.route)">
+        <span class="material-icons">{{ item.icon }}</span> <!-- Usa Material Icons o cualquier icono -->
+        <span class="text-sm">{{ item.label }}</span>
+      </button>
+    </li>
+  </ul>
+</div>

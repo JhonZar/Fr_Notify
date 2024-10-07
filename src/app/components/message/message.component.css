@@ -1,0 +1,23 @@
+/* Asegúrate de que la transición se aplique a las transformaciones */
+.transform {
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+:host {
+  position: fixed; /* Para fijar el mensaje en la parte superior */
+  top: 0; /* Posición en la parte superior */
+  left: 50%; /* Centrar horizontalmente */
+  transform: translateX(-50%); /* Ajuste para centrar */
+  z-index: 1000; /* Para que esté por encima de otros elementos */
+}
+
+/* Clases de movimiento personalizadas */
+.translate-y-enter {
+  transform: translateY(20px); /* Moverse un poco hacia abajo al entrar */
+  opacity: 1;
+}
+
+.translate-y-exit {
+  transform: translateY(-100px); /* Moverse más hacia arriba al salir */
+  opacity: 0;
+}

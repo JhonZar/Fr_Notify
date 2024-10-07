@@ -1,0 +1,19 @@
+<div class="accordion">
+  <div *ngFor="let item of items; let i = index" class="mb-4">
+    <div
+      class="accordion-header flex justify-between items-center p-4 bg-gray-100 cursor-pointer rounded-lg hover:bg-gray-200 transition-all duration-300 ease-in-out shadow-md"
+      (click)="toggle(i)"
+    >
+      <div class="flex items-center">
+        <span class="material-icons mr-3 text-blue-600 transition-transform duration-300 ease-in-out"
+              [ngClass]="expandedIndex === i ? 'rotate-180' : 'rotate-0'">
+          expand_less
+        </span>
+        <h3 class="text-lg font-semibold text-gray-800">{{ item.title }}</h3>
+      </div>
+    </div>
+    <div *ngIf="expandedIndex === i" class="accordion-content p-4 border-t border-gray-300 bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out">
+      <ng-container *ngTemplateOutlet="item.content"></ng-container>
+    </div>
+  </div>
+</div>

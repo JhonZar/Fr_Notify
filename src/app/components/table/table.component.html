@@ -1,0 +1,40 @@
+<div class="container mx-auto p-4">
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-300">
+      <thead>
+        <tr class="bg-gray-800 text-white">
+          <th class="py-3 px-6 text-left">ID</th>
+          <th class="py-3 px-6 text-left">Nombre</th>
+          <th class="py-3 px-6 text-left">Correo</th>
+          <th class="py-3 px-6 text-left">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b">
+          <td class="py-3 px-6">1</td>
+          <td class="py-3 px-6">Juan Pérez</td>
+          <td class="py-3 px-6">juan.perezexample.com</td>
+          <td class="py-3 px-6">
+            <button (click)="abrirModal()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Editar</button>
+            <button (click)="eliminar(1)" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 ml-2">Eliminar</button>
+          </td>
+        </tr>
+        <tr class="border-b bg-gray-100">
+          <td class="py-3 px-6">2</td>
+          <td class="py-3 px-6">Ana López</td>
+          <td class="py-3 px-6">ana.lopezexample.com</td>
+          <td class="py-3 px-6">
+            <button (click)="abrirModal()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Editar</button>
+            <button (click)="eliminar(2)" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 ml-2">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Aquí llamas al componente modal -->
+  <app-modal *ngIf="isModalOpen" (cerrar)="cerrarModal()"></app-modal>
+
+  <!-- Componente de mensaje -->
+  <app-message #mensaje></app-message>
+</div>

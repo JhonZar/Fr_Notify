@@ -1,0 +1,22 @@
+<div class="time-settings-container flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="bg-white p-6 rounded-lg shadow-md max-w-sm w-full">
+    <h2 class="text-xl font-semibold text-center mb-4">Configuración de Hora de Envío</h2>
+
+      <label for="time" class="block text-sm font-medium text-gray-700">Hora de envío:</label>
+      <input
+        type="time"
+        id="time"
+        [(ngModel)]="selectedTime"
+        (change)="onTimeChange($event)"
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-blue-500"
+      />
+    
+    <button
+      type="button"
+      [disabled]="!selectedTime"
+      class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition duration-200"
+    >
+      Guardar Configuración
+    </button>
+  </div>
+</div>

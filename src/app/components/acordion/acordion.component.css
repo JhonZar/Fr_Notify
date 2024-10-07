@@ -1,0 +1,40 @@
+.accordion-header {
+  position: relative;
+}
+
+.accordion-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: background 0.3s;
+}
+
+.accordion-header:hover::after {
+  background: #3b82f6; /* Color azul de Tailwind */
+}
+
+.accordion-content {
+  max-height: none; /* Permitir altura automática */
+  overflow: hidden; /* Ocultar contenido que no se muestra */
+  transition: max-height 0.5s ease-in-out; /* Transición para max-height */
+}
+
+.accordion-content.ng-enter {
+  max-height: 0; /* Al entrar, empieza en 0 */
+}
+
+.accordion-content.ng-enter-active {
+  max-height: none; /* Altura máxima durante la transición */
+}
+
+.accordion-content.ng-leave {
+  max-height: none; /* Altura máxima al salir */
+}
+
+.accordion-content.ng-leave-active {
+  max-height: 0; /* Al salir, se oculta */
+}
